@@ -1,20 +1,44 @@
-name: 'Hello World'
-description: 'Greet someone'
+name: 'Kenneth git action'
+description: 'testing curl'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  DEPLOYMENT_API_ENDPOINT:  # id of input
+    description: 'DEPLOYMENT_API_ENDPOINT'
     required: true
-    default: 'World'
-  pokemon-id:  # id of input
-    description: 'pokename'
+    default: 'http://localhost:8081'
+  DEPLOYMENT_TYPE:  # id of input
+    description: 'DEPLOYMENT_TYPE'
     required: true
-    default: '1'
+    default: 'workflow'
+  FACTORY_CLUSTER:  # id of input
+    description: 'FACTORY_CLUSTER'
+    required: true
+    default: 'oneai-factory-amer-shared'
+  POKEMON_ID:  # id of input
+    description: 'POKEMON_ID'
+    required: true
+    default: 'workflow'
+  ACTIONS_ID_TOKEN_REQUEST_URL:  # id of input
+    description: 'ACTIONS_ID_TOKEN_REQUEST_URL'
+    required: true
+    default: '123456'
+  ACTIONS_ID_TOKEN_REQUEST_TOKEN:  # id of input
+    description: 'ACTIONS_ID_TOKEN_REQUEST_TOKEN'
+    required: true
+    default: 'dajdjj213j12j1lkj31l'
 outputs:
-  random-number:
-    description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-id }}
+  response:
+    description: "curl response"
+    #value: ${{ steps.random-number-generator.outputs.random-id }}
 runs:
-  using: "composite"
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.DEPLOYMENT_API_ENDPOINT}}
+    - ${{ inputs.DEPLOYMENT_TYPE}}
+    - ${{ inputs.FACTORY_CLUSTER}}
+    - ${{ inputs.POKEMON_ID}}
+    - ${{ inputs.ACTIONS_ID_TOKEN_REQUEST_TOKEN}}
+    - ${{ inputs.ACTIONS_ID_TOKEN_REQUEST_URL}}
   steps:
     - run: api_url="https://pokeapi.co/api/v2/pokemon/"${{ inputs.pokemon-id }};echo $api_url
       shell: bash
