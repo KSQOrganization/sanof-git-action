@@ -1,3 +1,3 @@
-# hello-world-composite-action
+# hello-world-action
 to test composite actions
 testing....
