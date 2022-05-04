@@ -1,9 +1,9 @@
 name: 'Kenneth git action'
 description: 'testing curl'
 inputs:
-OIDC_TOKEN:  # OIDC token
-    description: 'OIDC_TOKEN'
-    required: true
+  OIDC_TOKEN:  # OIDC token
+      description: 'OIDC_TOKEN'
+      required: true
   DEPLOYMENT_API_ENDPOINT:  # id of input
     description: 'DEPLOYMENT_API_ENDPOINT'
     required: true
