@@ -1,6 +1,7 @@
 #!/bin/bash
-ID_TOKEN=$(curl --silent -H "Authorization: bearer ${INPUT_ACTIONS_ID_TOKEN_REQUEST_TOKEN}" -H "Accept: application/json; api-version=2.0" -H "Content-Type: application/json" -d "{}" "${INPUT_ACTIONS_ID_TOKEN_REQUEST_URL}" | jq -r '.value')
-echo "ID TOKES IS: "$ID_TOKEN
+#ID_TOKEN=$(curl --silent -H "Authorization: bearer ${INPUT_ACTIONS_ID_TOKEN_REQUEST_TOKEN}" -H "Accept: application/json; api-version=2.0" -H "Content-Type: application/json" -d "{}" "${INPUT_ACTIONS_ID_TOKEN_REQUEST_URL}" | jq -r '.value')
+ID_TOKEN="${OIDC_TOKEN}"
+echo "DECODED ID TOKES IS: "$ID_TOKEN | base64
 # Construct JSON payload
 REQUEST_BODY=$(jq \
 --null-input \
@@ -18,7 +19,7 @@ REQUEST_BODY=$(jq \
 }')
 
 #print REQUEST_BODY
-echo $REQUEST_BODY
+echo "print REQUEST_BODY" $REQUEST_BODY
 
 #runs Pokemon test
 api_url="https://pokeapi.co/api/v2/pokemon/${INPUT_POKEMON_ID}"
