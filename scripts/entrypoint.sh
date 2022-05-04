@@ -1,9 +1,10 @@
 #!/bin/bash
 #ID_TOKEN=$(curl --silent -H "Authorization: bearer ${INPUT_ACTIONS_ID_TOKEN_REQUEST_TOKEN}" -H "Accept: application/json; api-version=2.0" -H "Content-Type: application/json" -d "{}" "${INPUT_ACTIONS_ID_TOKEN_REQUEST_URL}" | jq -r '.value')
-ID_TOKEN="${OIDC_TOKEN}"
+ID_TOKEN=${OIDC_TOKEN}
 echo "DECODED ID TOKES IS:"
 #Print the token
 echo $ID_TOKEN | base64
+echo "${OIDC_TOKEN}" | base64
 # Construct JSON payload
 REQUEST_BODY=$(jq \
 --null-input \
