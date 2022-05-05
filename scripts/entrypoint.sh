@@ -3,8 +3,8 @@
 ID_TOKEN=${OIDC_TOKEN}
 echo "DECODED ID TOKES IS:"
 #Print the token
-echo $ID_TOKEN | base64
-echo "${OIDC_TOKEN}" | base64
+echo $INPUT_ID_TOKEN | base64
+echo "${INPUT_OIDC_TOKEN}" | base64
 # Construct JSON payload
 REQUEST_BODY=$(jq \
 --null-input \
